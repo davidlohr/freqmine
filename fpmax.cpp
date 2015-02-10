@@ -101,6 +101,18 @@ void printLen()
 		printf("%d\n", ITlen[0][j]);
 }
 
+static void print_env(int nthreads)
+{
+#ifdef _OPENMP
+	const char *openmp_support = "on";
+#else
+	const char *openmp_support = "off";
+#endif
+	printf("Number of threads (openmp support [%s]): %d\n",
+	       openmp_support, nthreads);
+
+}
+
 int main(int argc, char **argv)
 {
 	double tstart, tdatap, tend;
@@ -134,6 +146,8 @@ int main(int argc, char **argv)
 		cerr << argv[1] << " could not be opened!" << endl;
 		exit(2);
 	}
+
+	print_env(workingthread);
 
 	wtime(&tstart);
 	fp_buf = new memory * [workingthread];
