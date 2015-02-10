@@ -1,5 +1,3 @@
-PREFIX=${PARSECDIR}/pkgs/apps/freqmine/inst/${PARSECPLAT}
-
 TARGET = freqmine
 
 CXXFLAGS += -O2 -Wno-deprecated -fopenmp
@@ -7,7 +5,7 @@ CXXFLAGS += -O2 -Wno-deprecated -fopenmp
 all: $(TARGET)
 
 $(TARGET): fpgrowth.o data.o fp_tree.o buffer.o fsout.o fp_node.o wtime.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) fpgrowth.o data.o fp_tree.o buffer.o fsout.o fp_node.o wtime.o $(LIBS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) fpgrowth.o data.o fp_tree.o buffer.o fsout.o fp_node.o wtime.o -o $(TARGET)
 
 wtime.o: wtime.cpp wtime.h
 	$(CXX) $(CXXFLAGS) -c wtime.cpp -o wtime.o
@@ -34,6 +32,5 @@ clean:
 	rm -f *.o $(TARGET)
 
 install:
-	mkdir -p $(PREFIX)/bin
 	cp -f $(TARGET) $(PREFIX)/bin/$(TARGET)
 
