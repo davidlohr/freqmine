@@ -1161,7 +1161,7 @@ void FP_tree::scan2_DB(int workingthread)
 		for (j = 0; j  < itemno; j ++)
 			temp += global_nodenum[i][j];
 	}
-	int totalnodes = cal_level_25(0);
+//	int totalnodes = cal_level_25(0);
 	
 #pragma omp parallel for
 	for (j = 0; j < workingthread; j ++) {
